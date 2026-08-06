@@ -21,7 +21,7 @@
         
         .head-top {
             background: #66233A;   
-            padding: 0px 20px;
+            padding: 0px 20px;  
             display: flex;
             align-items: center;
             flex-wrap: wrap;
@@ -29,7 +29,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            margin-top: 8px;  
+            margin-top: 0px;  
             box-sizing: border-box; 
             min-height: 56px; 
         }
@@ -43,7 +43,7 @@
             letter-spacing: 1px;
         }
         .head-top .brand img {
-            height: 56px;
+            height: 56px;      
             width: auto;
             display: block;
         }
@@ -68,7 +68,7 @@
             display: inline-block;
         }
         .head-top .nav ul li a:hover {
-            background: #E4BBD5;  
+            background: #A15079;  
             border-radius: 6px;
         }
         .head-top .nav ul li a.btn-join {
@@ -82,8 +82,73 @@
             background: #ffffff;
             color: #66233A;   
         }
-
+        
+        
+.head-top .nav ul li.dropdown {
+    position: relative;
     
+}
+
+.head-top .nav ul li.dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #66233A;
+    min-width: 200px;
+    border-radius: 8px;
+    padding: 8px 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    list-style: none;
+    z-index: 200;
+    margin-top: 2px;     
+
+}
+
+.head-top .nav ul li.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.head-top .nav ul li.dropdown .dropdown-menu li {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 0;
+}
+
+.head-top .nav ul li.dropdown .dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.head-top .nav ul li.dropdown .dropdown-menu li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 20px;
+    display: block;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+}
+
+.head-top .nav ul li.dropdown .dropdown-menu li a:hover {
+    background: #A15079;
+    border-radius: 0;
+}
+.head-top .nav ul li.dropdown::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background: transparent;
+    pointer-events: auto;   
+}
+
+.head-top .nav ul li.dropdown.active .dropdown-menu {
+    display: block;
+}
+
+        
         .lead {
             position: relative;
             overflow: hidden;
@@ -99,7 +164,7 @@
             display: block;
         }
 
-      
+        
         .lead-overlay {
             position: absolute;
             top: 0;
@@ -115,15 +180,15 @@
             pointer-events: none;
         }
         .lead-overlay .text-block {
-            max-width: 66.666%;
+            max-width: 53%;  
             text-align: left;
         }
         .lead-overlay .title-main {
-            font-size: 3.2rem;
+            font-size: 3.5rem;   
             font-weight: 700;
             letter-spacing: 0.02em;
             line-height: 1.2;
-            margin-bottom: 0.4rem;
+            margin-bottom: 2.5rem;  
         }
         .lead-overlay .sub-text {
             font-size: 1.3rem;
@@ -185,7 +250,7 @@
         .card-item .card-number {
             font-size: 2.8rem;
             font-weight: 700;
-            color: #66233A;  
+            color: #66233A;   
             letter-spacing: 1px;
             line-height: 1.2;
         }
@@ -360,7 +425,7 @@
         }
         .feature-card .card-img {
             width: 100%;
-            height: 290px;  /* 修改：300改成280 */
+            height: 290px;  
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 16px;
@@ -382,7 +447,7 @@
         }
         .feature-card .btn-sm {
             display: inline-block;
-            background: #66233A;  
+            background: #66233A;   
             color: #ffffff;
             font-size: 0.95rem;
             font-weight: 600;
@@ -396,7 +461,7 @@
         }
         .feature-card .btn-sm:hover {
             background: #ffffff;
-            color: #66233A;  
+            color: #66233A;   
         }
 
         
@@ -416,96 +481,98 @@
             margin-bottom: 40px;
         }
         
+        
         .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px 0;
+          position: relative;
+          max-width: 1000px;
+          margin: 0 auto;
+          padding: 40px 0 20px;
         }
         
         .timeline::before {
-            content: '';
-            position: absolute;
-            top: 77px;
-            left: -30px;
-            right: -30px;
-            height: 4px;
-            background: #66233A;  
-            border-radius: 4px;
+          content: '';
+          position: absolute;
+          top: 93px;      
+          left: -30px;
+          right: -30px;
+          height: 4px;
+          background: #66233A;
+          border-radius: 4px;
         }
         .timeline-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            position: relative;
-            padding-top: 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          position: relative;
+          padding-top: 0;
         }
         .timeline-item {
-            flex: 1;
-            text-align: center;
-            position: relative;
-            padding-top: 30px;
+          flex: 1;
+          text-align: center;
+          position: relative;
+          padding-top: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .timeline-item.left {
+          align-items: center;   
+          text-align: center;    
+        }
+        .timeline-item.right {
+          align-items: center;   
+          text-align: center;    
+        }
+        
+        .timeline-item .phase-label {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #66233A;
+          margin-bottom: 0.5px;
+          transform: translateY(-5px);  
         }
         
         .timeline-item .dot {
-            width: 18px;
-            height: 18px;
-            background: #66233A;  
-            border-radius: 50%;
-            margin: 0 auto 14px auto;
-            border: 3px solid #ffffff;
-            box-shadow: 0 0 0 3px #66233A;   
-            position: relative;
-            z-index: 2;
-        }
-        .timeline-item .phase-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 2px;
-        }
-        .timeline-item .phase-year {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #66233A;   
-        }
-        .timeline-item .phase-desc {
-            font-size: 1.0rem;
-            font-weight: 400;
-            color: #444;
-            margin-top: 2px;
-        }
-        
-        .timeline-item.left {
-            text-align: left;
-            padding-left: 10px;
+          width: 18px;
+          height: 18px;
+          background: #66233A;
+          border-radius: 50%;
+          border: 3px solid #ffffff;
+          box-shadow: 0 0 0 3px #66233A;
+          position: relative;
+          z-index: 2;
+          flex-shrink: 0;
+          margin: 0;
         }
         .timeline-item.left .dot {
-            margin-left: 0;
-        }
-        .timeline-item.right {
-            text-align: right;
-            padding-right: 10px;
+           
         }
         .timeline-item.right .dot {
-            margin-right: 0;
+           
         }
-       
-        .timeline-item.left {
-            flex: 0 0 30%;
+        
+        .timeline-item .phase-title {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: #1a1a1a;
+          margin-top: 16px;
+          margin-bottom: 2px;
+          white-space: nowrap;   
         }
-        .timeline-item.center {
-            flex: 0 0 30%;
-            text-align: center;
+        .timeline-item .phase-year {
+          font-size: 1.4rem;
+          font-weight: 600;
+          color: #66233A;
         }
-        .timeline-item.right {
-            flex: 0 0 30%;
-            text-align: right;
+        .timeline-item .phase-desc {
+          font-size: 1.0rem;
+          font-weight: 400;
+          color: #444;
+          margin-top: 2px;
         }
-
-       
+        
         .foot-nav {
-            background: #66233A;  
+            background: #66233A;   
             padding: 8px 20px;
         }
         .foot-nav .nav ul {
@@ -523,7 +590,7 @@
             padding: 6px 14px;
         }
         .foot-nav .nav ul li a:hover {
-            background: #E4BBD5;  
+            background: #A15079;  
             border-radius: 6px;
         }
 
@@ -549,35 +616,8 @@
         }
 
         
-        .glow-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-           
-            /* background: radial-gradient(circle, rgba(0, 102, 204, 0.30) 0%, rgba(0, 102, 204, 0) 70%); */
-            background: radial-gradient(circle, rgba(220, 160, 255, 0.3) 0%, rgba(0, 102, 204, 0) 70%);
-            pointer-events: none;
-            animation: pulseGlow 4s ease-in-out infinite;
-            z-index: 0;
-        }
-        @keyframes pulseGlow {
-            0% {
-                transform: translate(-50%, -50%) scale(0.5);
-                opacity: 0.4;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(2.0);
-                opacity: 0.9;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(0.5);
-                opacity: 0.4;
-            }
-        }
+        
+        
 
         
         .contact-join-block {
@@ -594,10 +634,14 @@
         }
         .contact-join-block:hover {
             transform: scale(1.02);
-           
-            /* box-shadow: 0 0 40px rgba(0, 102, 204, 0.25); */
-            box-shadow: 0 0 40px rgba(220, 160, 255, 0.3);
-            /* box-shadow: 0 0 40px rgba(180, 130, 255, 0.3); */
+            
+            
+            
+            
+            
+            
+            
+            box-shadow: 0 0 40px rgba(180, 130, 255, 0.3); 
             border-color: #66233A;   
         }
         .contact-join-block .block-title {
@@ -664,7 +708,7 @@
         }
         .column .row:first-child {
             font-weight: bold;
-            color: #ffffff;   、
+            color: #ffffff;   
             font-size: 18px;
             border-bottom: 2px solid #CE93BF;   
         }
@@ -681,6 +725,8 @@
             padding-top: 0;
             padding-bottom: 10px;
         }
+        
+        
         
         .row.role-combined {
           display: flex;
@@ -700,7 +746,7 @@
           font-size: 15px;
         }
 
-       
+        
         @media (max-width: 750px) {
             .main_left {
                 flex: 0 0 100%;
@@ -773,19 +819,20 @@
                 font-size: 2.0rem;
             }
             .timeline::before {
-                left: -10px;
-                right: -10px;
-                top: 70px;
+              left: -10px;
+              right: -10px;
+              top: 48px;
             }
-            .timeline-item.left,
-            .timeline-item.center,
-            .timeline-item.right {
-                flex: 0 0 28%;
+            .timeline-item .phase-label {
+              font-size: 0.9rem;
+              transform: translateY(-17px);
             }
             .timeline-item .phase-title {
-                font-size: 1.0rem;
+              font-size: 1.0rem;
             }
-        }
+            .timeline-item .phase-year {
+              font-size: 0.9rem;
+            }
         @media (max-width: 480px) {
             .lead {
                 height: 200px;
@@ -825,18 +872,19 @@
                 font-size: 1.6rem;
             }
             .timeline::before {
-                left: -5px;
-                right: -5px;
-                top: 60px;
+              left: -5px;
+              right: -5px;
+              top: 42px;
+            }
+            .timeline-item .phase-label {
+              font-size: 0.8rem;
+              transform: translateY(-14px);
             }
             .timeline-item .phase-title {
-                font-size: 0.9rem;
+              font-size: 0.85rem;
             }
             .timeline-item .phase-year {
-                font-size: 0.9rem;
-            }
-            .timeline-item .phase-desc {
-                font-size: 0.8rem;
+              font-size: 0.8rem;
             }
             .feature-card .card-img {
                 height: 150px;
@@ -846,6 +894,7 @@
 </head>
 <body>
 
+    
     <div class="head-top">
         <div class="brand">
             <img src="images/logo1.jpg" alt="Coro-Athero-Map Logo" />
@@ -853,13 +902,21 @@
         </div>
         <div class="nav">
             <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="http://115.190.5.252:8383/" target="_blank">PORTALS & DATA</a></li>  
-                <li><a href="publication.html" target="_blank">PUBLICATIONS</a></li>  
-                <li><a href="meishi.html">NEWS</a></li>
-                <li><a href="liuyan.html">ABOUT</a></li>
-                <li><a href="#join-section" class="btn-join">Join us</a></li>
-            </ul>
+              <li><a href="index.html">HOME</a></li>
+              <li><a href="http://115.190.5.252:8383/" target="_blank">PORTALS & DATA</a></li>
+              <li><a href="publication.html" target="_blank">PUBLICATIONS</a></li>
+              <li><a href="javascript:void(0)">NEWS</a></li>
+              <li class="dropdown" id="nav-about-dropdown"> 
+                <a href="javascript:void(0)">ABOUT</a>
+                
+                <ul class="dropdown-menu"> 
+                  <li><a href="#">Steering Committee</a></li>
+                  <li><a href="#">Executive Committee</a></li>
+                  <li><a href="#">External Oversight</a></li>  
+              </ul>
+    </li>
+    <li><a href="#join-section" class="btn-join">Join us</a></li>
+</ul>
         </div>
     </div>
 
@@ -869,13 +926,13 @@
         <div class="lead-overlay">
             <div class="text-block">
                 <div class="title-main">Coro-Athero-Map Project</div>
-                <div class="sub-text">Coro-Athero-Map is a comprehensive biobank and research platform for studying coronary atherosclerosis through clinical data and multi-omics profiling.</div>   
-                <div class="sub-text">We provide curated datasets, analytical tools, and research resources to support discoveries in coronary artery disease.</div>   
+                <div class="sub-text">Coro-Athero-Map Project (CAMP) is a prospective longitudinal cohort and biobank study designed to systematically delineate the molecular landscape of coronary atherosclerosis by integrating deep multi-omics profiling of coronary plaque tissues, blood molecular signatures, imaging, and long-term clinical follow-up.</div>   
+                
             </div>
         </div>
     </div>
 
-   
+    
     <div class="data-intro">
     <div class="data-text-block">
         <div class="data-title">Overall objective</div>
@@ -912,7 +969,7 @@
     <div class="main">
         <div class="main_left">
             <div class="pic">
-                <img src="images/pic1.jpg" alt="急救培训" />
+                <img src="images/pic1.jpg" alt="1111" />
             </div>
             <div class="search">
                 <input type="text" class="text" placeholder="Search..." />
@@ -923,9 +980,9 @@
                     <li><a href="index.html">HOME</a></li>
                 <li><a href="http://115.190.5.252:8383/" target="_blank">PORTALS & DATA</a></li> 
                 <li><a href="publication.html" target="_blank">PUBLICATIONS</a></li> 
-                    <li><a href="meishi.html">NEWS</a></li>
+                    <li><a href="javascript:void(0)">NEWS</a></li>
                     <li><a href="liuyan.html">ABOUT</a></li>
-                    <li><a href="liuyan.html">CONTACT</a></li>
+                    <li><a href="javascript:void(0)">CONTACT</a></li>
                 </ul>
                 <div class="pic0">
                     <img src="images/jianjie.png" alt="简介图标" />
@@ -936,21 +993,21 @@
             <div class="jianjie">
                 <h2>Research Overview</h2>  
                 <p>
-                   To date, our team has established three complementary coronary artery cohorts that form the foundation of our multi‑omics investigation. The first is a 16‑sample pilot cohort, designed for discovery and workflow optimization. The second is a 233‑sample carotid endarterectomy (CE) cohort, which provides the statistical power and depth necessary for robust molecular profiling. The third is a 92‑sample heart transplantation (HTx) cohort, offering a unique window into the molecular determinants of advanced atherosclerotic disease. 
+                   To date, 309 patients have been enrolled in the CE cohort. The HTx cohort offers a unique window into normal or early-stage coronary specimens, covering the continuous spectrum of lesions from early intimal thickening to advanced complex plaques. The team previously established the first single-cell transcriptomic atlas of normal human cardiac arteries, performed proteomic profiling on 20 coronary specimens spanning five histopathological stages, and laid a solid technical and data foundation for the construction of the CAMP coronary reference atlas. 
                 </p>
                 <p>
-                   Leveraging this extensive biobank, we are now pioneering the integration of artificial intelligence with drug screening to accelerate therapeutic discovery for coronary atherosclerosis. Under the visionary leadership of Professor Zhan Hu, our team remains at the forefront of cardiovascular multi‑omics research in China, committed to translating scientific discoveries into meaningful clinical impact.
+                   Leveraging two unique clinical scenarios, we are integrating artificial intelligence-based modeling with multi-omics data to construct an open-access coronary reference atlas and a digital twin platform, aiming to drive the transition of CAD from conventional empirical therapy to molecular subtype-guided precision medicine.
                 </p>
             
 
-               
+                
                 <div class="feature-cards">
-                    
+                     
                     <div class="feature-card">
                         <img src="images/pic2.jpg" alt="Coronary Atlas" class="card-img" />  
                         <div class="card-title">Coronary Atlas</div>
                         <div class="card-desc">
-                            Use the curated clinical and molecular datasets from the Coro-Athero-Map cohort through an interactive platform designed for visualization and analysis.  <!-- 修改：文字内容已改 -->
+                            Use the curated clinical and molecular datasets from the Coro-Athero-Map cohort through an interactive platform designed for visualization and analysis.  
                         </div>
                         <a href="http://115.190.5.252:8383/" class="btn-sm">Read More</a>
                     </div>
@@ -968,37 +1025,41 @@
         </div>
     </div>
 
+    
     <div class="milestones-section">
         <div class="section-title">
             Milestones
             <span class="blinking-cursor"></span>
         </div>
 
+        
         <div class="timeline">
        
+            
             <div class="timeline-row">
-                
-                <div class="timeline-item left">
-                    <div class="dot"></div>
-                    <div class="phase-title">Phase I：Foundation</div>
-                    <div class="phase-year">2022</div>
               
-                </div>
-                
-                <div class="timeline-item center">
-                    <div class="dot"></div>
-                    <div class="phase-title">Phase II：Target discovery and diagnostic prediction</div>
-                    <div class="phase-year">2026</div>
-                    <div class="phase-desc"></div>
-                </div>
-                
-                <div class="timeline-item right">
-                    <div class="dot"></div>
-                    <div class="phase-title">Phase III：Clinical translation</div>
-                    <div class="phase-year">2028</div>
-                    <div class="phase-desc"></div>
-                </div>
+              <div class="timeline-item left">
+                <div class="phase-label">Phase I</div>
+                <div class="dot"></div>
+                <div class="phase-title">Foundation</div>
+                <div class="phase-year">2022</div>
+              </div>
+              
+              <div class="timeline-item center">
+                <div class="phase-label">Phase II</div>
+                <div class="dot"></div>
+                <div class="phase-title">Target discovery and diagnostic prediction</div>
+                <div class="phase-year">2026</div>
+              </div>
+              
+              <div class="timeline-item right">
+                <div class="phase-label">Phase III</div>
+                <div class="dot"></div>
+                <div class="phase-title">Clinical translation</div>
+                <div class="phase-year">2028</div>
+              </div>
             </div>
+            
         </div>
     </div>
 
@@ -1009,14 +1070,15 @@
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="http://115.190.5.252:8383/" target="_blank">PORTALS & DATA</a></li> 
                 <li><a href="publication.html" target="_blank">PUBLICATIONS</a></li> 
-                <li><a href="meishi.html">NEWS</a></li>
+                <li><a href="javascript:void(0)">NEWS</a></li>
                 <li><a href="liuyan.html">ABOUT</a></li>
-                <li><a href="liuyan.html">CONTACT</a></li>
+                <li><a href="javascript:void(0)">CONTACT</a></li>
             </ul>
         </div>
     </div>
 
   
+    
     <div class="foot" id="join-section">
 
         
@@ -1051,26 +1113,29 @@
         
         <div class="container">
           
-           
+            
             <div class="column">    
                 <div class="row">Host Institution</div>
                 <div class="row"><a href="https://www.cams.cn" target="_blank">Chinese Academy of Medical Sciences</a></div>
                 <div class="row"><a href="http://www.nccd.org.cn" target="_blank">National Center for Cardiovascular Diseases</a></div>
             </div>
             
+            
             <div class="column">
-                <div class="row">Resource</div>
-                <div class="row">Biomarker research</div>
-                <div class="row">European Heart Journal</div>
+                <div class="row">Collaboration</div>
+                <div class="row">ChinaPEACE cohort</div>
+                <div class="row">ChinaHEART cohort</div>
             </div>
             <div class="column">
                 <div class="row">Contact</div>
                 
                 <div class="row role-combined"><span class="role-label">Lead PI</span> <span class="role-name">Zhan Hu</span></div>  
                 <div class="row role-combined"><span class="role-label">Secretary</span> <span class="role-name">Xinjie Xu</span></div>  
+            </div>
         </div>
     </div>
 
+    
     <script>
         document.querySelectorAll('a[href="#join-section"]').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -1084,6 +1149,55 @@
                 }
             });
         });
+        
+var navAbout = document.getElementById('nav-about-dropdown');
+var leftAbout = document.querySelector('.left_nav ul li a[href="liuyan.html"]');
+var footAbout = document.querySelector('.foot-nav .nav ul li a[href="liuyan.html"]');
+
+var hideTimer = null;
+
+function showNavAboutMenu(e) {
+    if (e) e.preventDefault();
+    if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+    }
+    navAbout.classList.add('active');
+}
+
+function scheduleHideNavAboutMenu() {
+    if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+    }
+    hideTimer = setTimeout(function() {
+        if (!navAbout.matches(':hover')) {
+            navAbout.classList.remove('active');
+        }
+        hideTimer = null;
+    }, 400);
+}
+
+if (leftAbout) {
+    leftAbout.addEventListener('click', showNavAboutMenu);
+    leftAbout.addEventListener('mouseleave', scheduleHideNavAboutMenu);
+}
+
+if (footAbout) {
+    footAbout.addEventListener('click', showNavAboutMenu);
+    footAbout.addEventListener('mouseleave', scheduleHideNavAboutMenu);
+}
+
+navAbout.addEventListener('mouseenter', function() {
+    if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+    }
+});
+
+navAbout.addEventListener('mouseleave', function() {
+    scheduleHideNavAboutMenu();
+});
     </script>
 </body>
 </html>
