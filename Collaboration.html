@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaboration - Coro-Athero-Map Project</title>
+    <style>
+        :root {
+            --wine: #5e2234;
+            --wine-deep: #3f1624;
+            --wine-soft: #7d4660;
+            --rose: #e9ebef;
+            --rose-deep: #8a4a60;
+            --cream: #f4f5f7;
+            --cream-bright: #fbfcfd;
+            --card: #ffffff;
+            --ink: #262a2f;
+            --muted: #616a75;
+            --line: #e2e4e9;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+        h1, h2, h3 {
+            font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+        a {
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        ::selection {
+            background: var(--wine);
+            color: #fff;
+        }
+        :focus-visible {
+            outline: 2px solid var(--wine-soft);
+            outline-offset: 2px;
+        }
+
+        /* ---------- header ---------- */
+        .head-top {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #66233A;
+            border-bottom: 1px solid rgba(255, 255, 255, .12);
+            padding: 0 28px;
+            min-height: 62px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            box-shadow: 0 4px 18px rgba(63, 22, 36, .18);
+        }
+        .head-top .brand img {
+            height: 58px;
+            width: auto;
+            display: block;
+        }
+        .head-top .nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .head-top .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .head-top .nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14.5px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: background .25s ease, color .25s ease;
+        }
+        .head-top .nav ul li a:hover {
+            background: #A15079;
+            color: #ffffff;
+        }
+
+        /* ---------- page hero (light) ---------- */
+        .page-hero {
+            background: var(--cream-bright);
+            color: var(--ink);
+            border-bottom: 1px solid var(--line);
+            padding: 80px 24px 70px;
+            text-align: center;
+        }
+        .page-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: .01em;
+            color: var(--wine-deep);
+            margin-bottom: 18px;
+        }
+        .page-hero p {
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 1.25rem;
+            color: #000000;
+            line-height: 1.85;
+        }
+
+        /* ---------- sections / panels ---------- */
+        .collab-section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 70px 24px 20px;
+        }
+        .panel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 44px;
+        }
+        .panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: stretch;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 12px 34px rgba(38, 42, 47, .07);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 50px rgba(38, 42, 47, .12);
+        }
+        .panel-img {
+            width: 100%;
+            height: 340px;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(38, 42, 47, .12);
+            flex-shrink: 0;
+        }
+        .panel-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .panel-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            text-align: left;
+        }
+        .panel-body h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--wine-deep);
+            margin-bottom: 4px;
+        }
+        .panel-body .panel-en {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            color: var(--rose-deep);
+            margin-bottom: 12px;
+        }
+        .panel-body p {
+            color: var(--ink);
+            line-height: 1.8;
+            margin-bottom: 12px;
+            font-size: 1.02rem;
+        }
+        .btn-contact {
+            display: inline-block;
+            background: var(--wine);
+            color: #fff;
+            font-size: .95rem;
+            font-weight: 600;
+            letter-spacing: .5px;
+            padding: 10px 28px;
+            border-radius: 40px;
+            border: 2px solid var(--wine);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background .3s ease, color .3s ease, transform .3s ease;
+            align-self: center;
+            margin-top: auto;
+        }
+        .btn-contact:hover {
+            background: transparent;
+            color: var(--wine);
+            transform: translateY(-2px);
+        }
+
+        /* ---------- modal form ---------- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(38, 34, 38, .45);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            padding: 20px;
+        }
+        .modal-overlay.open {
+            display: flex;
+        }
+        .modal-card {
+            background: var(--cream-bright);
+            border-radius: 22px;
+            max-width: 560px;
+            width: 100%;
+            padding: 34px 34px 28px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, .28);
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: pop .3s ease;
+        }
+        @keyframes pop {
+            from { transform: translateY(16px) scale(.98); opacity: 0; }
+            to { transform: none; opacity: 1; }
+        }
+        .modal-card .modal-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+        .modal-card .modal-head h3 {
+            font-size: 1.4rem;
+            color: var(--wine-deep);
+        }
+        .modal-card .modal-head .modal-type {
+            font-size: .8rem;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            line-height: 1;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 8px;
+            transition: background .2s ease;
+        }
+        .modal-close:hover {
+            background: var(--rose);
+            color: var(--wine-deep);
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 11px 14px;
+            font-size: .95rem;
+            font-family: Arial, "Helvetica Neue", "Microsoft YaHei", sans-serif;
+            color: var(--ink);
+            background: #fff;
+            transition: border-color .25s ease, box-shadow .25s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--wine-soft);
+            box-shadow: 0 0 0 3px rgba(94, 34, 52, .12);
+        }
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .btn-submit {
+            flex: 1;
+            background: var(--wine);
+            color: #fff;
+            border: 2px solid var(--wine);
+            border-radius: 40px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: .5px;
+            cursor: pointer;
+            transition: background .3s ease, color .3s ease;
+        }
+        .btn-submit:hover {
+            background: transparent;
+            color: var(--wine);
+        }
+        .btn-cancel {
+            flex: 0 0 110px;
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--line);
+            border-radius: 40px;
+            padding: 12px 20px;
+            font-size: .95rem;
+            cursor: pointer;
+            transition: background .3s ease, color .3s ease;
+        }
+        .btn-cancel:hover {
+            background: var(--rose);
+            color: var(--wine-deep);
+        }
+
+        /* ---------- footer ---------- */
+        .foot {
+            background: var(--cream);
+            border-top: 1px solid var(--line);
+            padding: 40px 24px 32px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .foot .foot-links {
+            display: flex;
+            justify-content: center;
+            gap: 26px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .foot .foot-links a {
+            color: var(--wine);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: background .25s ease;
+        }
+        .foot .foot-links a:hover {
+            background: var(--rose);
+            color: var(--wine-deep);
+        }
+        .foot .foot-copy {
+            color: var(--muted);
+            font-size: .85rem;
+            letter-spacing: .5px;
+        }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 1100px) {
+            .panel-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 800px) {
+            .head-top {
+                flex-direction: column;
+                align-items: stretch;
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+            .head-top .nav {
+                justify-content: center;
+            }
+            .head-top .nav ul {
+                justify-content: center;
+                gap: 6px;
+            }
+            .page-hero {
+                padding: 54px 20px 48px;
+            }
+            .page-hero h1 {
+                font-size: 1.9rem;
+            }
+            .panel-grid {
+                grid-template-columns: 1fr;
+            }
+            .panel {
+                padding: 20px 18px;
+                gap: 16px;
+            }
+            .panel-body h2 {
+                font-size: 1.3rem;
+            }
+            .collab-section {
+                padding: 50px 16px 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            .modal-card {
+                padding: 24px 20px 20px;
+            }
+            .form-actions {
+                flex-direction: column;
+            }
+            .btn-cancel {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ Header ============ -->
+    <div class="head-top">
+        <div class="brand">
+            <img src="images/logo1.jpg" alt="Coro-Athero-Map Logo" />
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="index-ds-V5.html">HOME</a></li>
+                <li><a href="http://115.190.5.252:8383/" target="_blank">ATLAS</a></li>
+                <li><a href="Publications.html" target="_blank">PUBLICATIONS</a></li>
+                <li><a href="javascript:void(0)">NEWS</a></li>
+                <li><a href="Collaboration.html">COLLABORATION</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ============ Page hero (light) ============ -->
+    <div class="page-hero">
+        <h1>Collaborate with Coro-Athero-Map</h1>
+        <p>
+            We encourage collaboration with domestic and international academic institutions, healthcare systems, and industry partners to advance precision diagnosis and treatment of coronary artery disease (CAD).
+        </p>
+    </div>
+
+    <!-- ============ Collaboration panels ============ -->
+    <div class="collab-section" id="panels">
+        <div class="panel-grid">
+
+        <!-- Panel 1: Sample collaboration -->
+        <div class="panel" id="sample">
+            <div class="panel-img">
+                <img src="images/sample.png" alt="Sample collaboration" />
+            </div>
+            <div class="panel-body">
+                <h2>Sample Collaboration</h2>
+                <span class="panel-en">Biospecimen &amp; Biobank</span>
+                <p>
+                    CAMP has established a systematic biobank encompassing coronary atherosclerotic tissues, peripheral
+                    blood and its derivatives, including plasma and peripheral blood mononuclear cells (PBMC), along
+                    with detailed clinical information of patients. Leveraging two unique clinical scenarios — coronary
+                    endarterectomy (CE) for advanced lesions and heart transplantation (HTx) for normal or early-stage
+                    coronary specimens — all biospecimens are collected, processed, and stored according to standardized
+                    operating procedures.
+                </p>
+                <p>
+                    We welcome multi-center acquisition of coronary tissues and shared, standardized sample collection
+                    and quality control, providing long-term resource support for mechanistic studies and translational
+                    research.
+                </p>
+                <button class="btn-contact" data-type="Sample Collaboration (Biospecimen &amp; Biobank)" data-email="deng_xiaying@163.com">Contact us</button>
+            </div>
+        </div>
+
+        <!-- Panel 2: Cohort collaboration -->
+        <div class="panel" id="cohort">
+            <div class="panel-img">
+                <img src="images/cohort.png" alt="Cohort collaboration" />
+            </div>
+            <div class="panel-body">
+                <h2>Cohort Collaboration</h2>
+                <span class="panel-en">Cohort Integration</span>
+                <p>
+                    To date,
+                    309 patients have been enrolled in the CE cohort and 30 in the HTx cohort. We have established
+                    collaborative relationships with the ChinaPEACE and ChinaHEART cohorts to share study design and
+                    analytical experience and explore cross-cohort data integration strategies.
+                </p>
+                <p>
+                    We welcome collaborations with CAD cohorts or cohorts of other arterial beds — such as carotid,
+                    peripheral, and cerebral arteries — to integrate atherosclerosis data from different vascular beds,
+                    covering the continuous spectrum from early intimal thickening to advanced complex plaques, and to
+                    support cross-ancestry validation.
+                </p>
+                <button class="btn-contact" data-type="Cohort Collaboration (Cohort Integration)" data-email="deng_xiaying@163.com">Contact us</button>
+            </div>
+        </div>
+
+        <!-- Panel 3: Translational & validation -->
+        <div class="panel" id="translation">
+            <div class="panel-img">
+                <img src="images/translation.png" alt="Translational research" />
+            </div>
+            <div class="panel-body">
+                <h2>Translational Research &amp; Validation</h2>
+                <span class="panel-en">Translation &amp; Validation</span>
+                <p>
+                    The team previously established the first single-cell transcriptomic atlas of normal human cardiac
+                    arteries and performed proteomic profiling on 20 coronary specimens spanning five histopathological
+                    stages, validating a three-protein panel consisting of THBS1, C1R, and ECM2 for CAD diagnosis in an
+                    independent plasma cohort. We are dedicated to advancing basic findings toward clinical validation.
+                </p>
+                <p>
+                    We look forward to collaborating with clinical and industry partners on independent cohort
+                    validation, functional validation, and translational studies of candidate biomarkers and
+                    therapeutic targets, accelerating early diagnosis, prognostic assessment, and drug development.
+                </p>
+                <button class="btn-contact" data-type="Translational Research &amp; Validation" data-email="deng_xiaying@163.com">Contact us</button>
+            </div>
+        </div>
+
+        <!-- Panel 4: AI-driven research -->
+        <div class="panel" id="ai">
+            <div class="panel-img">
+                <img src="images/AI.png" alt="AI-driven research" />
+            </div>
+            <div class="panel-body">
+                <h2>AI-driven Research Collaboration</h2>
+                <span class="panel-en">AI-Driven Research</span>
+                <p>
+                    CAMP aims to construct a coronary reference atlas and an AI-driven virtual plaque (AIVP) platform.
+                    Through biological tokenization — defining genes as tokens, single-cell transcriptomic states as
+                    sentences, and the plaque microenvironment as the context window — Transformer-architecture-based
+                    large-scale AI models are applied to the learning and inference of plaque multi-omics data.
+                </p>
+                <p>
+                    We invite partners in AI computational resources, multimodal data integration, and foundation
+                    models to join us in simulating plaque evolution trajectories, enabling individualized virtual
+                    intervention simulation, and developing decision-support tools for clinical practice.
+                </p>
+                <button class="btn-contact" data-type="AI-driven Research Collaboration" data-email="deng_xiaying@163.com">Contact us</button>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <!-- ============ Footer ============ -->
+    <div class="foot">
+        <div class="foot-links">
+            <a href="index-ds-V5.html">HOME</a>
+            <a href="http://115.190.5.252:8383/" target="_blank">ATLAS</a>
+            <a href="Publications.html" target="_blank">PUBLICATIONS</a>
+            <a href="javascript:void(0)">NEWS</a>
+            <a href="Collaboration.html">COLLABORATION</a>
+        </div>
+        <div class="foot-copy">&copy; 2026 Coro-Athero-Map Project (CAMP) &middot; Collaboration</div>
+    </div>
+
+    <!-- ============ Contact modal ============ -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-head">
+                <div>
+                    <h3 id="modalTitle">Contact us</h3>
+                    <div class="modal-type" id="modalType">Collaboration type</div>
+                </div>
+                <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            </div>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="f_type">Collaboration Type</label>
+                    <select id="f_type" name="type">
+                        <option value="Sample Collaboration (Biospecimen &amp; Biobank)">Sample Collaboration (Biospecimen &amp; Biobank)</option>
+                        <option value="Cohort Collaboration (Cohort Integration)">Cohort Collaboration (Cohort Integration)</option>
+                        <option value="Translational Research &amp; Validation">Translational Research &amp; Validation</option>
+                        <option value="AI-driven Research Collaboration">AI-driven Research Collaboration</option>
+                        <option value="Other (Other)">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="f_email">Your Email</label>
+                    <input type="email" id="f_email" name="email" placeholder="you@institution.org" required />
+                </div>
+                <div class="form-group">
+                    <label for="f_org">Your Institution / Lab</label>
+                    <input type="text" id="f_org" name="org" placeholder="Institution / Lab" required />
+                </div>
+                <div class="form-group">
+                    <label for="f_msg">Your Message</label>
+                    <textarea id="f_msg" name="message" placeholder="Your research interests, expertise, or ideas for collaboration." required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Submit</button>
+                    <button type="button" class="btn-cancel" id="modalCancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============ Scripts ============ -->
+    <script>
+        (function () {
+            var overlay = document.getElementById('modalOverlay');
+            var modalType = document.getElementById('modalType');
+            var typeSelect = document.getElementById('f_type');
+            var form = document.getElementById('contactForm');
+            var modalTitle = document.getElementById('modalTitle');
+
+            var currentEmail = 'deng_xiaying@163.com';   // default recipient
+            var DEFAULT_EMAIL = 'deng_xiaying@163.com';  // used when "Other" is selected
+
+            function openModal(type, email) {
+                modalType.textContent = type;
+                modalTitle.textContent = 'Contact us';
+                currentEmail = email || currentEmail;
+                var found = false;
+                Array.prototype.forEach.call(typeSelect.options, function (opt) {
+                    if (opt.value === type) {
+                        typeSelect.value = type;
+                        found = true;
+                    }
+                });
+                if (!found) typeSelect.value = 'Other';
+                overlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                overlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+
+            document.querySelectorAll('.btn-contact').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    openModal(btn.getAttribute('data-type'), btn.getAttribute('data-email'));
+                });
+            });
+
+            document.getElementById('modalClose').addEventListener('click', closeModal);
+            document.getElementById('modalCancel').addEventListener('click', closeModal);
+
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) closeModal();
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeModal();
+            });
+
+            // Opens the user's email client with the message pre-filled.
+            // No email is sent automatically; the user reviews and sends it themselves.
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                var type = typeSelect.value;
+                var email = document.getElementById('f_email').value.trim();
+                var org = document.getElementById('f_org').value.trim();
+                var msg = document.getElementById('f_msg').value.trim();
+
+                if (!email || !org || !msg) {
+                    alert('Please fill in your email, institution, and message.');
+                    return;
+                }
+
+                // If "Other" is selected, always send to the default recipient.
+                var recipient = (type === 'Other (Other)') ? DEFAULT_EMAIL : currentEmail;
+
+                var subject = 'CAMP Collaboration Inquiry — ' + type;
+                var body =
+                    'Collaboration Type: ' + type + '\n' +
+                    'Email: ' + email + '\n' +
+                    'Institution / Organization: ' + org + '\n' +
+                    '----------------------------------------\n' +
+                    msg;
+
+                var mailto = 'mailto:' + recipient + '?subject='
+                    + encodeURIComponent(subject)
+                    + '&body=' + encodeURIComponent(body);
+
+                window.location.href = mailto;
+                closeModal();
+                form.reset();
+            });
+        })();
+    </script>
+</body>
+</html>

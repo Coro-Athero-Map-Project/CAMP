@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Coro-Athero-Map Project</title>
+    <style>
+        :root {
+            --wine: #5e2234;
+            --wine-deep: #3f1624;
+            --wine-soft: #7d4660;
+            --rose: #e9ebef;
+            --rose-deep: #8a4a60;
+            --cream: #f4f5f7;
+            --cream-bright: #fbfcfd;
+            --card: #ffffff;
+            --ink: #262a2f;
+            --muted: #616a75;
+            --line: #e2e4e9;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+        h1, h2, h3 {
+            font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+        a {
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        ::selection {
+            background: var(--wine);
+            color: #fff;
+        }
+        :focus-visible {
+            outline: 2px solid var(--wine-soft);
+            outline-offset: 2px;
+        }
+
+        /* ---------- header ---------- */
+        .head-top {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #66233A;
+            border-bottom: 1px solid rgba(255, 255, 255, .12);
+            padding: 0 28px;
+            min-height: 62px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            box-shadow: 0 4px 18px rgba(63, 22, 36, .18);
+        }
+        .head-top .brand img {
+            height: 58px;
+            width: auto;
+            display: block;
+        }
+        .head-top .nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .head-top .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .head-top .nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14.5px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: background .25s ease, color .25s ease;
+        }
+        .head-top .nav ul li a:hover {
+            background: #A15079;
+            color: #ffffff;
+        }
+        .head-top .nav ul li a.btn-join {
+            border: 2px solid #ffffff;
+            border-radius: 40px;
+            padding: 7px 22px;
+            margin-left: 8px;
+            transition: background .3s ease, color .3s ease;
+        }
+        .head-top .nav ul li a.btn-join:hover {
+            background: #ffffff;
+            color: #66233A;
+        }
+
+        /* ---------- page hero (light) ---------- */
+        .page-hero {
+            background: var(--cream-bright);
+            color: var(--ink);
+            border-bottom: 1px solid var(--line);
+            padding: 80px 24px 70px;
+            text-align: center;
+        }
+        .page-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            color: var(--wine-deep);
+            margin-bottom: 16px;
+        }
+        .page-hero p {
+            max-width: 1000px;
+            margin: 0 auto;
+            font-size: 1.25rem;
+            color: #000000;
+            line-height: 1.85;
+        }
+
+        /* ---------- publications ---------- */
+        .pub-section {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 64px 24px 30px;
+        }
+        .pub-item {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 30px 34px 28px;
+            box-shadow: 0 12px 34px rgba(38, 42, 47, .07);
+            margin-bottom: 28px;
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .pub-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 50px rgba(38, 42, 47, .12);
+        }
+        .pub-item .pub-index {
+            display: inline-block;
+            background: var(--wine);
+            color: #fff;
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            padding: 4px 14px;
+            border-radius: 30px;
+            margin-bottom: 14px;
+        }
+        .pub-item h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--wine-deep);
+            line-height: 1.45;
+            margin-bottom: 10px;
+        }
+        .pub-item .pub-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+            font-size: .9rem;
+        }
+        .pub-item .pub-meta .pmid {
+            display: inline-block;
+            background: var(--cream);
+            border: 1px solid var(--line);
+            color: var(--wine);
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 30px;
+        }
+        .pub-item .pub-meta .journal {
+            color: var(--muted);
+            font-weight: 600;
+        }
+        .pub-item .pub-meta .year {
+            color: var(--muted);
+        }
+        .pub-authors {
+            color: var(--ink);
+            line-height: 1.75;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+        .pub-authors .author-label {
+            color: var(--rose-deep);
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+        .pub-item .pub-link {
+            display: inline-block;
+            background: var(--wine);
+            color: #fff;
+            font-size: .9rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            padding: 9px 26px;
+            border-radius: 40px;
+            border: 2px solid var(--wine);
+            text-decoration: none;
+            transition: background .3s ease, color .3s ease;
+            margin-top: 8px;
+        }
+        .pub-item .pub-link:hover {
+            background: transparent;
+            color: var(--wine);
+        }
+
+        /* ---------- footer ---------- */
+        .foot {
+            background: var(--cream);
+            border-top: 1px solid var(--line);
+            padding: 40px 24px 32px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .foot .foot-links {
+            display: flex;
+            justify-content: center;
+            gap: 26px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .foot .foot-links a {
+            color: var(--wine);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: .5px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            transition: background .25s ease;
+        }
+        .foot .foot-links a:hover {
+            background: var(--rose);
+            color: var(--wine-deep);
+        }
+        .foot .foot-copy {
+            color: var(--muted);
+            font-size: .85rem;
+            letter-spacing: .5px;
+        }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 800px) {
+            .head-top {
+                flex-direction: column;
+                align-items: stretch;
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+            .head-top .nav {
+                justify-content: center;
+            }
+            .head-top .nav ul {
+                justify-content: center;
+                gap: 6px;
+            }
+            .page-hero {
+                padding: 54px 20px 48px;
+            }
+            .page-hero h1 {
+                font-size: 1.9rem;
+            }
+            .pub-item {
+                padding: 22px 20px 22px;
+            }
+            .pub-item h2 {
+                font-size: 1.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ Header ============ -->
+    <div class="head-top">
+        <div class="brand">
+            <img src="images/logo1.jpg" alt="Coro-Athero-Map Logo" />
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="index-ds-V5.html">HOME</a></li>
+                <li><a href="http://115.190.5.252:8383/" target="_blank">ATLAS</a></li>
+                <li><a href="Publications.html">PUBLICATIONS</a></li>
+                <li><a href="javascript:void(0)">NEWS</a></li>
+                <li><a href="Collaboration.html" target="_blank">COLLABORATION</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ============ Page hero ============ -->
+    <div class="page-hero">
+        <h1>Publications</h1>
+        <p>
+            Peer-reviewed research from the Coro-Athero-Map Project (CAMP) and our collaborators,
+            advancing the molecular understanding of coronary atherosclerosis and precision medicine for CAD.
+        </p>
+    </div>
+
+    <!-- ============ Publication list ============ -->
+    <div class="pub-section">
+
+        <div class="pub-item">
+            <h2>Proteomic and histopathologic profiling reveal molecular features and clinical biomarkers of coronary atherosclerosis</h2>
+            <div class="pub-meta">
+                <span class="pmid">PMID: 41126379</span>
+                <span class="journal">Biomarker Research</span>
+                <span class="year">2025</span>
+            </div>
+            <p class="pub-authors">
+                <span class="author-label">Authors:&nbsp;</span>Xinjie Xu, Zhongli Chen, Sifei Chen, Jiansong Huang, Jiali Chen, Jiaying Cao, Hang Gao, Enhao Huang, Yibo Zhang, Xiangjie Li, Yifeng Zhang, Xiaorui Liu, Shengkang Huang, Ke Yang, Yang Yang, Wenjia Zhang, Ying Song, Liang Chen, Zhan Hu
+            </p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/41126379/" target="_blank" class="pub-link">Read on PubMed</a>
+        </div>
+
+        <div class="pub-item">
+            <h2>Strategies for arterial graft optimization at the single-cell level</h2>
+            <div class="pub-meta">
+                <span class="pmid">PMID: 39195932</span>
+                <span class="journal">Nature Cardiovascular Research</span>
+                <span class="year">2024</span>
+            </div>
+            <p class="pub-authors">
+                <span class="author-label">Authors:&nbsp;</span>Zhan Hu, Min Dai, Yuan Chang, Xiumeng Hua, Ningning Zhang, Xiao Chen, Yixuan Sheng, Zhenyu Xu, Hang Zhang, Yu Zhang, Hao Cui, Hao Jia, Xiu-Jie Wang, Jiangping Song
+            </p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/39195932/" target="_blank" class="pub-link">Read on PubMed</a>
+        </div>
+
+        <div class="pub-item">
+            <h2>Single-Cell Transcriptomic Atlas of Different Human Cardiac Arteries Identifies Cell Types Associated With Vascular Physiology</h2>
+            <div class="pub-meta">
+                <span class="pmid">PMID: 33626908</span>
+                <span class="journal">Arteriosclerosis, Thrombosis, and Vascular Biology</span>
+                <span class="year">2021</span>
+            </div>
+            <p class="pub-authors">
+                <span class="author-label">Authors:&nbsp;</span>Zhan Hu, Wendao Liu, Xiumeng Hua, Xiao Chen, Yuan Chang, Yiqing Hu, Zhenyu Xu, Jiangping Song
+            </p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/33626908/" target="_blank" class="pub-link">Read on PubMed</a>
+        </div>
+
+        <div class="pub-item">
+            <h2>Investigation of Lipid Metabolism in Dynamic Progression of Coronary Artery Atherosclerosis of Humans by Time-of-Flight Secondary Ion Mass Spectrometry</h2>
+            <div class="pub-meta">
+                <span class="pmid">PMID: 33587603</span>
+                <span class="journal">Analytical Chemistry</span>
+                <span class="year">2021</span>
+            </div>
+            <p class="pub-authors">
+                <span class="author-label">Authors:&nbsp;</span>Hao-Wen Li, Zhan Hu, Xiao Chen, Jie Ren, Hao Cui, Min Zhang, Liang Chen, Xin Hua, Jiangping Song, Yi-Tao Long
+            </p>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/33587603/" target="_blank" class="pub-link">Read on PubMed</a>
+        </div>
+
+    </div>
+
+    <!-- ============ Footer ============ -->
+    <div class="foot">
+        <div class="foot-links">
+            <a href="index-ds-V5.html">HOME</a>
+            <a href="http://115.190.5.252:8383/" target="_blank">ATLAS</a>
+            <a href="Publications.html">PUBLICATIONS</a>
+            <a href="javascript:void(0)">NEWS</a>
+            <a href="Collaboration.html" target="_blank">COLLABORATION</a>
+        </div>
+        <div class="foot-copy">&copy; 2026 Coro-Athero-Map Project (CAMP) &middot; Publications</div>
+    </div>
+
+</body>
+</html>
