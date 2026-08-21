@@ -216,7 +216,7 @@
         /* ---------- stats cards ---------- */
         .card-section {
             background: var(--cream);
-            padding: 60px 20px 90px;
+            padding: 60px 20px 40px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             justify-items: center;
@@ -228,7 +228,7 @@
                 max-width: 1240px;
                 margin: 0 auto;
                 margin-left: 180px;
-                padding: 60px 20px 90px;
+                padding: 60px 20px 40px;
             }
         }
         .progress-title {
@@ -428,7 +428,7 @@
         /* ---------- image carousel strip ---------- */
         .carousel-wrap {
             background: var(--cream);
-            padding: 20px 20px 0;
+            padding: 8px 20px 0;
         }
         .carousel-strip {
             position: relative;
@@ -501,6 +501,17 @@
         /* only the centre slide zooms on hover (side slides stay dim) */
         .carousel-slide.center:hover img {
             transform: scale(1.15);
+        }
+        /* when a slide is hovered (JS toggles .hovered), it brightens
+           and every other slide gets dimmed further — position does not change */
+        .carousel-slide.hovered img {
+            transform: scale(1.1);
+        }
+        .carousel-slide.hovered::after {
+            background: rgba(128, 128, 128, 0);
+        }
+        .carousel-strip.hover-active .carousel-slide:not(.hovered)::after {
+            background: rgba(60, 60, 60, .68);
         }
 
         /* feature cards */
@@ -1253,7 +1264,33 @@
             });
             strip.addEventListener('mouseleave', function () {
                 paused = false;
+                slides.forEach(function (s) {
+                    s.classList.remove('hovered');
+                });
+                strip.classList.remove('hover-active');
             });
+
+            // Hovering any slide brightens it and dims the others, without moving it.
+            slides.forEach(function (slide, i) {
+                slide.addEventListener('mouseenter', function () {
+                    paused = true;
+                    strip.classList.add('hover-active');
+                    slides.forEach(function (s) {
+                        s.classList.remove('hovered');
+                    });
+                    slide.classList.add('hovered');
+                });
+                slide.addEventListener('mouseleave', function () {
+                    slide.classList.remove('hovered');
+                    var anyHovered = slides.some(function (s) {
+                        return s.classList.contains('hovered');
+                    });
+                    if (!anyHovered) {
+                        strip.classList.remove('hover-active');
+                    }
+                });
+            });
+
             // re-layout correctly on resize
             window.addEventListener('resize', render);
 
