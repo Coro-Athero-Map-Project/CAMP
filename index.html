@@ -659,15 +659,41 @@
 
         .container {
             display: flex;
-            justify-content: space-around;
-            max-width: 1000px;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1100px;
             margin: 0 auto;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
+        }
+        .foot-about {
+            flex: 1;
+            min-width: 260px;
+            max-width: 440px;
+        }
+        .foot-about .foot-brand {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 5px;
+            letter-spacing: 0;
+            font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+        .foot-about .foot-desc {
+            font-size: 1.10rem;
+            line-height: 1.5;
+            color: #000000;
+        }
+        .foot-cols {
+            flex: 1;
+            display: flex;
+            gap: 40px;
+            justify-content: flex-end;
+            min-width: 320px;
         }
         .column {
-            flex: 1;
-            min-width: 250px;
+            flex: 0 1 auto;
+            min-width: 200px;
         }
         .column .row {
             padding: 6px 0;
@@ -837,6 +863,15 @@
             }
             .card-item {
                 max-width: 360px;
+            }
+            .foot-about {
+                text-align: center;
+                max-width: 100%;
+            }
+            .foot-cols {
+                justify-content: center;
+                flex-wrap: wrap;
+                width: 100%;
             }
             .column {
                 text-align: center;
@@ -1034,31 +1069,34 @@
 
         <div class="foot-red">
             <div class="container">
-                <div class="column">
-                    <div class="row">Host Institution</div>
-                    <div class="row"><a href="https://www.cams.cn" target="_blank">Chinese Academy of Medical Sciences</a></div>
-                    <div class="row"><a href="http://www.nccd.org.cn" target="_blank">National Center for Cardiovascular Diseases</a></div>
-                </div>
-                <div class="column">
-                    <div class="row">Partnership</div>
-                    <div class="row">ChinaPEACE cohort</div>
-                    <div class="row">ChinaHEART cohort</div>
-                </div>
-                <div class="column">
-                    <div class="row">Lead PI</div>
-                    <div class="row role-combined">
-                        <span class="role-label">Wei Feng</span>
-                        <a href="mailto:fengwei@fuwai.com" class="role-name">fengwei@fuwai.com</a>
+                <div class="foot-about">
+                    <div class="foot-brand">Coro-Athero-Map Project</div>
+                    <div class="foot-desc">
+                        A multi-omics cohort and biobank study integrating plaque tissue, blood, imaging, and follow-up to decode the molecular landscape of coronary atherosclerosis.
                     </div>
-                    <div class="row role-combined">
-                        <span class="role-label">Zhan Hu</span>
-                        <a href="mailto:huzhan@fuwai.com" class="role-name">huzhan@fuwai.com</a>
+                </div>
+                <div class="foot-cols">
+                    <div class="column">
+                        <div class="row">Host Institution</div>
+                        <div class="row"><a href="https://www.cams.cn" target="_blank">Chinese Academy of Medical Sciences</a></div>
+                        <div class="row"><a href="http://www.nccd.org.cn" target="_blank">National Center for Cardiovascular Diseases</a></div>
+                    </div>
+                    <div class="column">
+                        <div class="row">Lead PI</div>
+                        <div class="row role-combined">
+                            <span class="role-label">Wei Feng</span>
+                            <a href="mailto:fengwei@fuwai.com" class="role-name">fengwei@fuwai.com</a>
+                        </div>
+                        <div class="row role-combined">
+                            <span class="role-label">Zhan Hu</span>
+                            <a href="mailto:huzhan@fuwai.com" class="role-name">huzhan@fuwai.com</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="foot-bottom">
-                &copy; 2026 Coro-Athero-Map Project (CAMP) &middot; Home
+                &copy; 2026 Coro-Athero-Map Project (CAMP)
             </div>
         </div>
     </div>
