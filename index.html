@@ -433,7 +433,7 @@
         .carousel-strip {
             position: relative;
             overflow: hidden;
-            height: 260px;
+            height: 190px;
             max-width: 1200px;
             margin: 0 auto;
             border-radius: 20px;
@@ -446,7 +446,7 @@
         .carousel-track {
             display: flex;
             height: 100%;
-            transition: transform 1s ease-in-out;
+            transition: transform 1.5s ease-in-out;
             will-change: transform;
         }
         /* during the seamless loop-back, disable ALL transitions so nothing flickers */
@@ -468,6 +468,13 @@
             justify-content: center;
             overflow: hidden;
         }
+        .carousel-slide a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+        }
         .carousel-slide img {
             width: 100%;
             height: 100%;
@@ -480,14 +487,20 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(63, 22, 36, .55);
+            background: rgba(128, 128, 128, .45);
             transition: background .5s ease;
+            pointer-events: none;
+            z-index: 3;   /* sit above the clickable link so the dim actually shows */
         }
         .carousel-slide.center::after {
-            background: rgba(63, 22, 36, 0);
+            background: rgba(128, 128, 128, 0);
         }
         .carousel-slide.center img {
-            transform: scale(1.06);
+            transform: scale(1.04);
+        }
+        /* only the centre slide zooms on hover (side slides stay dim) */
+        .carousel-slide.center:hover img {
+            transform: scale(1.15);
         }
 
         /* feature cards */
@@ -1040,11 +1053,10 @@
     <div class="carousel-wrap">
         <div class="carousel-strip" id="carousel">
             <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide"><img src="images/1.png" alt="Research image 1" /></div>
-                <div class="carousel-slide"><img src="images/2.png" alt="Research image 2" /></div>
-                <div class="carousel-slide"><img src="images/3.png" alt="Research image 3" /></div>
-                <div class="carousel-slide"><img src="images/4.png" alt="Research image 4" /></div>
-                <div class="carousel-slide"><img src="images/5.png" alt="Research image 5" /></div>
+                <div class="carousel-slide"><a href="https://pubmed.ncbi.nlm.nih.gov/41126379/" target="_blank"><img src="images/article1.png" alt="Article 1" /></a></div>
+                <div class="carousel-slide"><a href="https://pubmed.ncbi.nlm.nih.gov/39195932/" target="_blank"><img src="images/article2.png" alt="Article 2" /></a></div>
+                <div class="carousel-slide"><a href="https://pubmed.ncbi.nlm.nih.gov/33626908/" target="_blank"><img src="images/article3.png" alt="Article 3" /></a></div>
+                <div class="carousel-slide"><a href="https://pubmed.ncbi.nlm.nih.gov/33587603/" target="_blank"><img src="images/article4.png" alt="Article 4" /></a></div>
             </div>
         </div>
     </div>
@@ -1078,7 +1090,7 @@
                 <div class="foot-cols">
                     <div class="column">
                         <div class="row">Host Institution</div>
-                        <div class="row"><a href="https://www.cams.cn" target="_blank">Chinese Academy of Medical Sciences</a></div>
+                        <div class="row"><a href="https://www.fuwaihospital.org" target="_blank">Fuwai Hospital</a></div>
                         <div class="row"><a href="http://www.nccd.org.cn" target="_blank">National Center for Cardiovascular Diseases</a></div>
                     </div>
                     <div class="column">
@@ -1218,7 +1230,7 @@
                         track.removeEventListener('transitionend', onEnd);
                         cb();
                     }
-                }, 1400);
+                }, 1900);
             }
 
             function next() {
@@ -1233,7 +1245,7 @@
                 if (timer) return;
                 timer = setInterval(function () {
                     if (!paused) next();
-                }, 2000);
+                }, 3000);
             }
 
             strip.addEventListener('mouseenter', function () {
