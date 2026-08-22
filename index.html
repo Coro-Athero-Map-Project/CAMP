@@ -193,7 +193,6 @@
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 3px;
-            text-transform: uppercase;
             color: var(--wine-soft);
             margin-bottom: 14px;
         }
@@ -227,7 +226,6 @@
             .card-section {
                 max-width: 1240px;
                 margin: 0 auto;
-                margin-left: 180px;
                 padding: 60px 20px 40px;
             }
         }
@@ -237,7 +235,6 @@
             font-size: 2.4rem;
             font-weight: 700;
             letter-spacing: 0.2px;
-            text-transform: uppercase;
             color: var(--wine-deep);
             margin-bottom: 6px;
         }
@@ -311,10 +308,10 @@
         }
         @media (min-width: 1201px) {
             .main {
-                margin-left: 180px;
+                margin: 0 auto;
             }
             .foot {
-                padding-left: 180px;
+                padding: 0;
             }
         }
         .main_right {
@@ -361,7 +358,7 @@
         }
         @media (min-width: 1201px) {
             .objectives-section {
-                margin-left: 180px;
+                margin: 0 auto;
             }
         }
         .objectives-section .obj-head {
@@ -373,7 +370,6 @@
             font-size: 2.4rem;
             font-weight: 700;
             letter-spacing: .01em;
-            text-transform: uppercase;
         }
         .objectives-section .obj-head .obj-sub {
             color: var(--muted);
@@ -425,93 +421,188 @@
             border-bottom: none;
         }
 
-        /* ---------- image carousel strip ---------- */
-        .carousel-wrap {
+        /* ---------- recent publications carousel ---------- */
+        .pub-carousel-wrap {
             background: var(--cream);
-            padding: 8px 20px 0;
+            padding: 12px 24px 8px;
         }
-        .carousel-strip {
+        .pub-carousel-head {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--wine-deep);
+            margin-bottom: 12px;
+            letter-spacing: .01em;
+        }
+        .pub-carousel {
             position: relative;
-            overflow: hidden;
-            height: 190px;
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
-            border-radius: 20px;
-        }
-        @media (min-width: 1201px) {
-            .carousel-strip {
-                margin-left: 180px;
-            }
-        }
-        .carousel-track {
             display: flex;
-            height: 100%;
-            transition: transform 1.5s ease-in-out;
+            align-items: center;
+            gap: 16px;
+        }
+        .pub-carousel-viewport {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--cream-bright);
+            border: 1px solid var(--line);
+            box-shadow: 0 12px 32px rgba(38, 42, 47, .08);
+        }
+        .pub-carousel-track {
+            display: flex;
+            transition: transform .7s ease-in-out;
             will-change: transform;
         }
-        /* during the seamless loop-back, disable ALL transitions so nothing flickers */
-        .carousel-strip.no-anim .carousel-track {
+        .pub-carousel-track.no-anim {
             transition: none;
         }
-        .carousel-strip.no-anim .carousel-slide::after {
-            transition: none;
+        .pub-slide {
+            flex: 0 0 100%;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            padding: 18px 28px;
         }
-        .carousel-strip.no-anim .carousel-slide img {
-            transition: none;
+        .pub-slide-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .carousel-slide {
-            flex: 0 0 33.3333%;
-            height: 100%;
-            position: relative;
+        .pub-slide-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--wine-deep);
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        .pub-slide-info h3 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color .2s ease;
+        }
+        .pub-slide-info h3 a:hover {
+            color: var(--wine-soft);
+            text-decoration: underline;
+        }
+        .pub-slide-info .pub-slide-meta {
+            font-size: .95rem;
+            color: var(--muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .pub-slide-info .pub-slide-meta .pmid {
+            color: var(--wine);
+            font-weight: 700;
+        }
+        .pub-slide-info .pub-slide-meta .pub-slide-journal {
+            font-size: 1rem;
+            color: var(--muted);
+        }
+        .pub-slide-info .pub-slide-meta .pub-slide-journal strong {
+            color: var(--ink);
+        }
+        .pub-slide-info .pub-slide-authors {
+            font-size: .98rem;
+            line-height: 1.7;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        .pub-slide-info .pub-slide-authors .corr {
+            font-weight: 400;
+        }
+        .pub-slide-info .pub-slide-authors a {
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .pub-slide-info .pub-slide-authors a:hover {
+            text-decoration: underline;
+        }
+        .pub-slide-img {
+            flex: 0 1 auto;
+            max-width: 42%;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 26px rgba(38, 42, 47, .14);
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
-        .carousel-slide a {
+        .pub-slide-img img {
+            max-height: 240px;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
             display: block;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 2;
         }
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform .6s ease;
+        .pub-arrow {
+            flex: 0 0 auto;
+            background: none;
+            border: none;
+            color: var(--wine-deep);
+            font-size: 3rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color .25s ease, transform .25s ease;
+            padding: 0;
+            width: 40px;
+            height: 60px;
         }
-        /* dim the side slides, keep the centre bright */
-        .carousel-slide::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(128, 128, 128, .45);
-            transition: background .5s ease;
-            pointer-events: none;
-            z-index: 3;   /* sit above the clickable link so the dim actually shows */
-        }
-        .carousel-slide.center::after {
-            background: rgba(128, 128, 128, 0);
-        }
-        .carousel-slide.center img {
-            transform: scale(1.04);
-        }
-        /* only the centre slide zooms on hover (side slides stay dim) */
-        .carousel-slide.center:hover img {
+        .pub-arrow:hover {
+            color: var(--wine);
             transform: scale(1.15);
         }
-        /* when a slide is hovered (JS toggles .hovered), it brightens
-           and every other slide gets dimmed further — position does not change */
-        .carousel-slide.hovered img {
-            transform: scale(1.1);
+        .pub-dots {
+            text-align: center;
+            margin-top: 8px;
         }
-        .carousel-slide.hovered::after {
-            background: rgba(128, 128, 128, 0);
+        .pub-dots .dot {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--line);
+            margin: 0 5px;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            transition: background .25s ease, transform .25s ease;
         }
-        .carousel-strip.hover-active .carousel-slide:not(.hovered)::after {
-            background: rgba(60, 60, 60, .68);
+        .pub-dots .dot.active {
+            background: var(--wine);
+            transform: scale(1.25);
+        }
+        @media (max-width: 760px) {
+            .pub-slide {
+                flex-direction: column;
+                padding: 22px 20px;
+                gap: 20px;
+                text-align: center;
+            }
+            .pub-slide-img {
+                flex: 0 0 auto;
+                max-width: 100%;
+                width: 100%;
+            }
+            .pub-slide-info h3 {
+                font-size: 1.15rem;
+            }
+            .pub-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
         }
 
         /* feature cards */
@@ -556,7 +647,7 @@
         .feature-card .card-desc {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--muted);
+            color: #000000;
             margin-bottom: 18px;
             flex: 1;
         }
@@ -790,7 +881,7 @@
         /* ---------- scroll-spy side navigation ---------- */
         .side-nav {
             position: fixed;
-            left: 22px;
+            left: 0;
             top: 50%;
             transform: translateY(-50%);
             z-index: 90;
@@ -811,11 +902,10 @@
             display: block;
             text-decoration: none;
             color: var(--muted);
-            font-size: 16px;
+            font-size: 1.18rem;
             font-weight: 700;
-            letter-spacing: 0.2px;
-            text-transform: uppercase;
-            padding: 8px 18px;
+            letter-spacing: 0;
+            padding: 6px 14px;
             border-radius: 6px;
             position: relative;
             transition: color .25s ease;
@@ -956,11 +1046,11 @@
         </div>
         <div class="nav">
             <ul>
-                <li><a href="index-ds-V5.html">HOME</a></li>
-                <li><a href="http://115.190.5.252:8383/" target="_blank">ATLAS</a></li>
-                <li><a href="Publications.html" target="_blank">PUBLICATIONS</a></li>
-                <li><a href="javascript:void(0)">NEWS</a></li>
-                <li><a href="Collaboration.html" target="_blank">COLLABORATION</a></li>
+                <li><a href="index-ds-V5.html">Home</a></li>
+                <li><a href="http://115.190.5.252:8383/" target="_blank">Atlas</a></li>
+                <li><a href="Publications.html" target="_blank">Publications</a></li>
+                <li><a href="javascript:void(0)">News</a></li>
+                <li><a href="Collaboration.html" target="_blank">Collaboration</a></li>
                 <li><a href="#join-section" class="btn-join">Join us</a></li>
             </ul>
         </div>
@@ -996,7 +1086,7 @@
                     <div class="hline"></div>
                 </div>
                 <p>
-                    To date, 309 patients have been enrolled in the CE cohort. The HTx cohort offers a unique window into normal or early-stage coronary specimens, covering the continuous spectrum of lesions from early intimal thickening to advanced complex plaques. The team previously established the first single-cell transcriptomic atlas of normal human cardiac arteries, performed proteomic profiling on 20 coronary specimens spanning five histopathological stages, and laid a solid technical and data foundation for the construction of the CAMP coronary reference atlas.
+                    To date, 245 patients have been enrolled in the CE cohort, with 371 tissue samples collected. The HTx cohort offers a unique window into normal or early-stage coronary specimens, covering the continuous spectrum of lesions from early intimal thickening to advanced complex plaques. The team previously established the first single-cell transcriptomic atlas of normal human cardiac arteries, performed proteomic profiling on 20 coronary specimens spanning five histopathological stages, and laid a solid technical and data foundation for the construction of the CAMP coronary reference atlas.
                 </p>
                 <p>
                     Leveraging two unique clinical scenarios, we are integrating artificial intelligence-based modeling with multi-omics data to construct an open-access coronary reference atlas and a digital twin platform, aiming to drive the transition of CAD from conventional empirical therapy to molecular subtype-guided precision medicine.
@@ -1025,14 +1115,13 @@
         </div>
     </div>
 
-    <!-- ============ Our Objective ============ -->
+    <!-- ============ Objective ============ -->
     <div class="objectives-section" id="objectives">
         <div class="obj-head">
-            <h2>Our Objective</h2>
+            <h2>Objective</h2>
         </div>
         <div class="objectives-grid">
             <div class="obj-card">
-                <h3>Overall Objective</h3>
                 <p>
                     To establish a research platform integrating a coronary tissue biobank, blood biobank, multi-omics data, deep clinical phenotyping, and long-term follow-up, and through an open-access coronary reference atlas and AI-powered analytical tools, to drive the transition of CAD from conventional empirical therapy to molecular subtype-guided precision medicine.
                 </p>
@@ -1060,16 +1149,63 @@
         </div>
     </div>
 
-    <!-- ============ Image carousel strip ============ -->
-    <div class="carousel-wrap">
-        <div class="carousel-strip" id="carousel">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide"><a href="https://pubmed.ncbi.nlm.nih.gov/41126379/" target="_blank"><img src="images/article1.png" alt="Article 1" /></a></div>
-                <div class="carousel-slide"><a href="https://pubmed.ncbi.nlm.nih.gov/39195932/" target="_blank"><img src="images/article2.png" alt="Article 2" /></a></div>
-                <div class="carousel-slide"><a href="https://pubmed.ncbi.nlm.nih.gov/33626908/" target="_blank"><img src="images/article3.png" alt="Article 3" /></a></div>
-                <div class="carousel-slide"><a href="https://pubmed.ncbi.nlm.nih.gov/33587603/" target="_blank"><img src="images/article4.png" alt="Article 4" /></a></div>
+    <!-- ============ Recent Publications carousel ============ -->
+    <div class="pub-carousel-wrap">
+        <div class="pub-carousel-head">Recent Publications</div>
+        <div class="pub-carousel" id="pubCarousel">
+            <button class="pub-arrow" id="pubPrev" aria-label="Previous">&lsaquo;</button>
+            <div class="pub-carousel-viewport">
+                <div class="pub-carousel-track" id="pubTrack">
+
+                    <div class="pub-slide">
+                        <div class="pub-slide-info">
+                            <h3><a href="https://pubmed.ncbi.nlm.nih.gov/41126379/" target="_blank">Proteomic and histopathologic profiling reveal molecular features and clinical biomarkers of coronary atherosclerosis</a></h3>
+                            <div class="pub-slide-meta"><span class="pmid">PMID: 41126379</span><span class="pub-slide-journal"><strong>Biomarker Research</strong> &middot; 2025</span></div>
+                            <div class="pub-slide-authors">Xinjie Xu, Zhongli Chen, Sifei Chen, Jiansong Huang, Jiali Chen, Jiaying Cao, Hang Gao, Enhao Huang, Yibo Zhang, Xiangjie Li, Yifeng Zhang, Xiaorui Liu, Shengkang Huang, Ke Yang, Yang Yang, Wenjia Zhang, Ying Song, <span class="corr"><a href="https://pubmed.ncbi.nlm.nih.gov/?term=%22Chen%20L%22[Author]">Liang Chen</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/?term=%22Hu%20Z%22[Author]">Zhan Hu</a></span></div>
+                        </div>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/41126379/" target="_blank" class="pub-slide-img">
+                            <img src="images/article1.png" alt="Article 1" />
+                        </a>
+                    </div>
+
+                    <div class="pub-slide">
+                        <div class="pub-slide-info">
+                            <h3><a href="https://pubmed.ncbi.nlm.nih.gov/39195932/" target="_blank">Strategies for arterial graft optimization at the single-cell level</a></h3>
+                            <div class="pub-slide-meta"><span class="pmid">PMID: 39195932</span><span class="pub-slide-journal"><strong>Nature Cardiovascular Research</strong> &middot; 2024</span></div>
+                            <div class="pub-slide-authors">Zhan Hu, Min Dai, Yuan Chang, Xiumeng Hua, Ningning Zhang, Xiao Chen, Yixuan Sheng, Zhenyu Xu, Hang Zhang, Yu Zhang, Hao Cui, Hao Jia, <span class="corr"><a href="https://www.nature.com/articles/s44161-024-00464-6#auth-Xiu_Jie-Wang-Aff3-Aff4" target="_blank">Xiu-Jie Wang</a>, <a href="https://www.nature.com/articles/s44161-024-00464-6#auth-Jiangping-Song-Aff1-Aff2" target="_blank">Jiangping Song</a></span></div>
+                        </div>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/39195932/" target="_blank" class="pub-slide-img">
+                            <img src="images/article2.png" alt="Article 2" />
+                        </a>
+                    </div>
+
+                    <div class="pub-slide">
+                        <div class="pub-slide-info">
+                            <h3><a href="https://pubmed.ncbi.nlm.nih.gov/33626908/" target="_blank">Single-Cell Transcriptomic Atlas of Different Human Cardiac Arteries Identifies Cell Types Associated With Vascular Physiology</a></h3>
+                            <div class="pub-slide-meta"><span class="pmid">PMID: 33626908</span><span class="pub-slide-journal"><strong>Arteriosclerosis, Thrombosis, and Vascular Biology</strong> &middot; 2021</span></div>
+                            <div class="pub-slide-authors">Zhan Hu, Wendao Liu, Xiumeng Hua, Xiao Chen, Yuan Chang, Yiqing Hu, Zhenyu Xu, <span class="corr">Jiangping Song</span></div>
+                        </div>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/33626908/" target="_blank" class="pub-slide-img">
+                            <img src="images/article3.png" alt="Article 3" />
+                        </a>
+                    </div>
+
+                    <div class="pub-slide">
+                        <div class="pub-slide-info">
+                            <h3><a href="https://pubmed.ncbi.nlm.nih.gov/33587603/" target="_blank">Investigation of Lipid Metabolism in Dynamic Progression of Coronary Artery Atherosclerosis of Humans by Time-of-Flight Secondary Ion Mass Spectrometry</a></h3>
+                            <div class="pub-slide-meta"><span class="pmid">PMID: 33587603</span><span class="pub-slide-journal"><strong>Analytical Chemistry</strong> &middot; 2021</span></div>
+                            <div class="pub-slide-authors">Hao-Wen Li, Zhan Hu, Xiao Chen, Jie Ren, Hao Cui, Min Zhang, Liang Chen, <span class="corr">Xin Hua, Jiangping Song, Yi-Tao Long</span></div>
+                        </div>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/33587603/" target="_blank" class="pub-slide-img">
+                            <img src="images/article4.png" alt="Article 4" />
+                        </a>
+                    </div>
+
+                </div>
             </div>
+            <button class="pub-arrow" id="pubNext" aria-label="Next">&rsaquo;</button>
         </div>
+        <div class="pub-dots" id="pubDots"></div>
     </div>
 
     <!-- ============ Footer (light) ============ -->
@@ -1181,74 +1317,91 @@
         window.addEventListener('resize', updateSideNav);
         updateSideNav();
 
-        // Image carousel — infinite seamless loop, pauses & zooms on hover of the centre slide
+        // Recent Publications carousel — seamless infinite loop with arrows + dots + autoplay
         (function () {
-            var strip = document.getElementById('carousel');
-            var track = document.getElementById('carouselTrack');
+            var track = document.getElementById('pubTrack');
             if (!track) return;
 
             var originals = Array.prototype.slice.call(track.children);
             var N = originals.length;
-            var baseIndex = 2;            // start with the 3rd original centred
-
-            // Duplicate the whole set so we can loop seamlessly without jumping back.
-            originals.forEach(function (slide) {
-                track.appendChild(slide.cloneNode(true));
-            });
-            var slides = Array.prototype.slice.call(track.children);
-
-            var index = baseIndex;
-            var wrapBack = N + 2;         // snap point: index N+2 shows same trio as index 2
+            var index = 1;               // start at the first real slide (1-based offset)
             var timer = null;
             var paused = false;
 
-            // Each slide is 1/3 of the strip width. We translate by px = index * slideWidth.
-            function slideWidth() {
-                return strip.clientWidth / 3;
+            var prevBtn = document.getElementById('pubPrev');
+            var nextBtn = document.getElementById('pubNext');
+            var dotsWrap = document.getElementById('pubDots');
+
+            // Build the seamless loop: clone last slide to front, first slide to back
+            var cloneLast = originals[N - 1].cloneNode(true);
+            var cloneFirst = originals[0].cloneNode(true);
+            track.insertBefore(cloneLast, track.firstChild);
+            track.appendChild(cloneFirst);
+
+            var slides = Array.prototype.slice.call(track.children);
+            var M = slides.length;       // N + 2
+
+            // Build dots (one per original slide)
+            var dots = [];
+            for (var i = 0; i < N; i++) {
+                var d = document.createElement('button');
+                d.className = 'dot';
+                d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                (function (idx) {
+                    d.addEventListener('click', function () {
+                        paused = true;
+                        goTo(idx + 1);
+                        restart();
+                    });
+                })(i);
+                dotsWrap.appendChild(d);
+                dots.push(d);
             }
 
             function render() {
-                track.style.transform = 'translate3d(-' + ((index - 1) * slideWidth()) + 'px, 0, 0)';
-                slides.forEach(function (slide, i) {
-                    slide.classList.toggle('center', i === index);
+                track.style.transform = 'translate3d(-' + (index * 100) + '%, 0, 0)';
+                // active dot = (index-1) wrapped into [0, N)
+                var activeDot = (index - 1 + N) % N;
+                dots.forEach(function (d, i) {
+                    d.classList.toggle('active', i === activeDot);
                 });
             }
 
-            function wrap() {
-                // disable ALL transitions on the whole strip, snap the track to the
-                // visually identical earlier position, then re-enable on the next frame.
-                strip.classList.add('no-anim');
-                index = wrapBack - N;     // N+2 -> 2 (same visual position)
+            function goTo(i) {
+                index = i;
                 render();
-                void strip.offsetWidth;   // force reflow so the instant change applies
-                requestAnimationFrame(function () {
-                    strip.classList.remove('no-anim');
-                });
             }
 
-            function onceTransitionEnd(cb) {
-                var done = false;
-                function onEnd(e) {
-                    if (e.target !== track) return;
-                    done = true;
-                    track.removeEventListener('transitionend', onEnd);
-                    cb();
-                }
-                track.addEventListener('transitionend', onEnd);
-                // safety fallback in case the event never fires
-                setTimeout(function () {
-                    if (!done) {
-                        track.removeEventListener('transitionend', onEnd);
-                        cb();
-                    }
-                }, 1900);
+            function jumpTo(i) {
+                // instant (no transition) jump — used to loop back seamlessly
+                track.classList.add('no-anim');
+                index = i;
+                render();
+                void track.offsetWidth;
+                requestAnimationFrame(function () {
+                    track.classList.remove('no-anim');
+                });
             }
 
             function next() {
                 index = index + 1;
                 render();
-                if (index >= wrapBack) {
-                    onceTransitionEnd(wrap);
+                // after reaching the end clone, snap back to the real first slide
+                if (index >= M - 1) {
+                    setTimeout(function () {
+                        jumpTo(1);
+                    }, 720);
+                }
+            }
+
+            function prev() {
+                index = index - 1;
+                render();
+                // after reaching the front clone, snap forward to the real last slide
+                if (index <= 0) {
+                    setTimeout(function () {
+                        jumpTo(N);
+                    }, 720);
                 }
             }
 
@@ -1256,42 +1409,40 @@
                 if (timer) return;
                 timer = setInterval(function () {
                     if (!paused) next();
-                }, 3000);
+                }, 4000);
             }
 
-            strip.addEventListener('mouseenter', function () {
+            function stop() {
+                if (timer) {
+                    clearInterval(timer);
+                    timer = null;
+                }
+            }
+
+            function restart() {
+                stop();
+                start();
+            }
+
+            nextBtn.addEventListener('click', function () {
+                paused = true;
+                next();
+                restart();
+            });
+            prevBtn.addEventListener('click', function () {
+                paused = true;
+                prev();
+                restart();
+            });
+
+            var viewport = track.parentElement;
+            viewport.addEventListener('mouseenter', function () {
                 paused = true;
             });
-            strip.addEventListener('mouseleave', function () {
+            viewport.addEventListener('mouseleave', function () {
                 paused = false;
-                slides.forEach(function (s) {
-                    s.classList.remove('hovered');
-                });
-                strip.classList.remove('hover-active');
             });
 
-            // Hovering any slide brightens it and dims the others, without moving it.
-            slides.forEach(function (slide, i) {
-                slide.addEventListener('mouseenter', function () {
-                    paused = true;
-                    strip.classList.add('hover-active');
-                    slides.forEach(function (s) {
-                        s.classList.remove('hovered');
-                    });
-                    slide.classList.add('hovered');
-                });
-                slide.addEventListener('mouseleave', function () {
-                    slide.classList.remove('hovered');
-                    var anyHovered = slides.some(function (s) {
-                        return s.classList.contains('hovered');
-                    });
-                    if (!anyHovered) {
-                        strip.classList.remove('hover-active');
-                    }
-                });
-            });
-
-            // re-layout correctly on resize
             window.addEventListener('resize', render);
 
             render();

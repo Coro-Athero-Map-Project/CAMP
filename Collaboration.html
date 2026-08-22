@@ -442,11 +442,11 @@
         </div>
         <div class="nav">
             <ul>
-                <li><a href="index-ds-V5.html">HOME</a></li>
-                <li><a href="http://115.190.5.252:8383/" target="_blank">ATLAS</a></li>
-                <li><a href="Publications.html" target="_blank">PUBLICATIONS</a></li>
-                <li><a href="javascript:void(0)">NEWS</a></li>
-                <li><a href="Collaboration.html">COLLABORATION</a></li>
+                <li><a href="index-ds-V5.html">Home</a></li>
+                <li><a href="http://115.190.5.252:8383/" target="_blank">Atlas</a></li>
+                <li><a href="Publications.html" target="_blank">Publications</a></li>
+                <li><a href="javascript:void(0)">News</a></li>
+                <li><a href="Collaboration.html">Collaboration</a></li>
             </ul>
         </div>
     </div>
@@ -484,7 +484,7 @@
                     and quality control, providing long-term resource support for mechanistic studies and translational
                     research.
                 </p>
-                <button class="btn-contact" data-type="Sample Collaboration (Biospecimen &amp; Biobank)" data-email="deng_xiaying@163.com">Contact us</button>
+                <button class="btn-contact" data-type="Sample Collaboration (Biospecimen &amp; Biobank)" data-email="fengwei@fuwai.com" data-email2="huzhan@fuwai.com">Contact us</button>
             </div>
         </div>
 
@@ -498,7 +498,7 @@
                 <span class="panel-en">Cohort Integration</span>
                 <p>
                     To date,
-                    309 patients have been enrolled in the CE cohort and 30 in the HTx cohort. We have established 
+                    245 patients have been enrolled in the CE cohort and 30 in the HTx cohort. We have established 
                     standardized protocols for biospecimen processing, multi‑omics assay, and longitudinal data capture, 
                     ensuring high‑quality molecular and clinical phenotyping.
                 </p>
@@ -508,7 +508,7 @@
                     covering the continuous spectrum from early intimal thickening to advanced complex plaques, and to
                     support cross-ancestry validation.
                 </p>
-                <button class="btn-contact" data-type="Cohort Collaboration (Cohort Integration)" data-email="deng_xiaying@163.com">Contact us</button>
+                <button class="btn-contact" data-type="Cohort Collaboration (Cohort Integration)" data-email="fengwei@fuwai.com" data-email2="huzhan@fuwai.com">Contact us</button>
             </div>
         </div>
 
@@ -531,7 +531,7 @@
                     validation, functional validation, and translational studies of candidate biomarkers and
                     therapeutic targets, accelerating early diagnosis, prognostic assessment, and drug development.
                 </p>
-                <button class="btn-contact" data-type="Translational Research &amp; Validation" data-email="deng_xiaying@163.com">Contact us</button>
+                <button class="btn-contact" data-type="Translational Research &amp; Validation" data-email="fengwei@fuwai.com" data-email2="huzhan@fuwai.com">Contact us</button>
             </div>
         </div>
 
@@ -554,7 +554,7 @@
                     models to join us in simulating plaque evolution trajectories, enabling individualized virtual
                     intervention simulation, and developing decision-support tools for clinical practice.
                 </p>
-                <button class="btn-contact" data-type="AI-driven Research Collaboration" data-email="deng_xiaying@163.com">Contact us</button>
+                <button class="btn-contact" data-type="AI-driven Research Collaboration" data-email="fengwei@fuwai.com" data-email2="huzhan@fuwai.com">Contact us</button>
             </div>
         </div>
 
@@ -564,11 +564,11 @@
     <!-- ============ Footer ============ -->
     <div class="foot">
         <div class="foot-links">
-            <a href="index-ds-V5.html">HOME</a>
-            <a href="http://115.190.5.252:8383/" target="_blank">ATLAS</a>
-            <a href="Publications.html" target="_blank">PUBLICATIONS</a>
-            <a href="javascript:void(0)">NEWS</a>
-            <a href="Collaboration.html">COLLABORATION</a>
+            <a href="index-ds-V5.html">Home</a>
+            <a href="http://115.190.5.252:8383/" target="_blank">Atlas</a>
+            <a href="Publications.html" target="_blank">Publications</a>
+            <a href="javascript:void(0)">News</a>
+            <a href="Collaboration.html">Collaboration</a>
         </div>
         <div class="foot-copy">&copy; 2026 Coro-Athero-Map Project (CAMP)</div>
     </div>
@@ -624,13 +624,16 @@
             var form = document.getElementById('contactForm');
             var modalTitle = document.getElementById('modalTitle');
 
-            var currentEmail = 'deng_xiaying@163.com';   // default recipient
-            var DEFAULT_EMAIL = 'deng_xiaying@163.com';  // used when "Other" is selected
+            var currentEmail = 'fengwei@fuwai.com';   // default recipient
+            var currentEmail2 = 'huzhan@fuwai.com';        // second default recipient
+            var DEFAULT_EMAIL = 'fengwei@fuwai.com';  // used when "Other" is selected
+            var DEFAULT_EMAIL2 = 'huzhan@fuwai.com';       // second email used when "Other" is selected
 
-            function openModal(type, email) {
+            function openModal(type, email, email2) {
                 modalType.textContent = type;
                 modalTitle.textContent = 'Contact us';
                 currentEmail = email || currentEmail;
+                currentEmail2 = email2 || currentEmail2;
                 var found = false;
                 Array.prototype.forEach.call(typeSelect.options, function (opt) {
                     if (opt.value === type) {
@@ -650,7 +653,7 @@
 
             document.querySelectorAll('.btn-contact').forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    openModal(btn.getAttribute('data-type'), btn.getAttribute('data-email'));
+                    openModal(btn.getAttribute('data-type'), btn.getAttribute('data-email'), btn.getAttribute('data-email2'));
                 });
             });
 
@@ -680,18 +683,21 @@
                     return;
                 }
 
-                // If "Other" is selected, always send to the default recipient.
-                var recipient = (type === 'Other (Other)') ? DEFAULT_EMAIL : currentEmail;
+                // If "Other" is selected, always send to the default recipients.
+                var isOther = (type === 'Other (Other)');
+                var recipient = isOther ? DEFAULT_EMAIL : currentEmail;
+                var recipient2 = isOther ? DEFAULT_EMAIL2 : currentEmail2;
 
                 var subject = 'CAMP Collaboration Inquiry — ' + type;
                 var body =
                     'Collaboration Type: ' + type + '\n' +
                     'Email: ' + email + '\n' +
-                    'Institution / Organization: ' + org + '\n' +
+                    'Institution / Lab: ' + org + '\n' +
                     '----------------------------------------\n' +
                     msg;
 
-                var mailto = 'mailto:' + recipient + '?subject='
+                // Multiple recipients are separated by commas in the mailto address.
+                var mailto = 'mailto:' + recipient + ',' + recipient2 + '?subject='
                     + encodeURIComponent(subject)
                     + '&body=' + encodeURIComponent(body);
 
